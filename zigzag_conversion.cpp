@@ -1,5 +1,6 @@
 #include <string>
 #include <cmath>
+#include <iostream>
 
 using namespace std;
 
@@ -7,9 +8,10 @@ class Solution {
 public:
     string convert(string s, int numRows) {
         string zigzag_result = s;
-        int num_peaks = ceil(s.length()/(2*numRows - 2));
         int p = 2*numRows - 2;
+        int num_peaks = ceil(float(s.length())/float(p));
         int rc = 2*num_peaks - 1;
+        std::cout << "sl, num_peaks, p, rc: " << s.length() << " " << num_peaks << " " << p << " " << rc << std::endl;
         for (int i = 0; i < s.length(); ++i)
         {
             if (i < num_peaks)
