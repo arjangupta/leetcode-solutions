@@ -9,8 +9,12 @@ public:
     string convert(string s, int numRows) {
         string zigzag_result = s;
         int p = 2*numRows - 2;
-        int num_peaks = ceil(float(s.length())/float(p));
-        int num_valleys = ceil(float(s.length() - numRows)/float(p));
+        int num_peaks = 1;
+        int num_valleys = 1;
+        if (p != 0) {
+            num_peaks = ceil(float(s.length())/float(p));
+            num_valleys = ceil(float(s.length() - numRows)/float(p));
+        }
         int rc = 2*num_peaks - 1;
         std::cout << "sl, num_peaks, p, rc: " << s.length() << " " << num_peaks << " " << p << " " << rc << std::endl;
         for (int i = 0; i < s.length(); ++i)
@@ -23,7 +27,11 @@ public:
             {
                 int row = (i - num_peaks)/rc + 1;
                 int valley_len = p - 2*row;
-                zigzag_result[i] = s[(i - num_peaks)/rc + 1];
+                if (((i - num_peaks)%rc)%2 == 0 && row + (((i - num_peaks)%rc)*valley_len) < s.length()) {
+                    zigzag_result[i] = s[row + ((i - num_peaks)%rc)*valley_len];
+                } else {
+                    zigzag_result[i] = s[row + ((i - num_peaks)%rc)*2*row];
+                }
             }
             else
             {
