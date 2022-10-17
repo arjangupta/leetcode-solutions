@@ -16,7 +16,7 @@ public:
             num_valleys = ceil(float(s.length() - numRows)/float(p));
         }
         int rc = 2*num_peaks - 1;
-        std::cout << "sl, num_peaks, p, rc: " << s.length() << " " << num_peaks << " " << p << " " << rc << std::endl;
+        std::cout << "sl, num_peaks, num_valleys, p, rc: " << s.length() << " " << num_peaks << " " << num_valleys << " " << p << " " << rc << std::endl;
         for (int i = 0; i < s.length(); ++i)
         {
             if (i < num_peaks)
