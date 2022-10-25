@@ -11,24 +11,29 @@ struct TreeNode {
     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
 };
 
+struct TreeNodeTraversal {
+    bool visited;
+    TreeNode* node;
+};
+
 class Solution {
 public:
     vector<int> postorderTraversal(TreeNode* root) {
         vector<int> result;
-        vector<TreeNode*> stack;
-        stack.push_back(root);
+        vector<TreeNodeTraversal> stack;
+        stack.push_back({false, root});
         while (!stack.empty()) {
-            TreeNode* curr = stack[stack.size()-1];
+            TreeNodeTraversal curr = stack[stack.size()-1];
             stack.pop_back();
-            if (curr != nullptr) {
-                cout << curr->val << " ";
-                if (curr->left == nullptr && curr->right == nullptr) {
-                    result.push_back(curr->val);
+            if (curr.node != nullptr) {
+                if (curr.visited) {
+                    result.push_back(curr.node->val);
                 }
                 else {
+                    curr.visited = true;
                     stack.push_back(curr);
-                    stack.push_back(curr->right);
-                    stack.push_back(curr->left);
+                    stack.push_back({false, curr.node->right});
+                    stack.push_back({false, curr.node->left});
                 }
             }
         }
