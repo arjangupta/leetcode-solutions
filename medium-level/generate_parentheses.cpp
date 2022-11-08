@@ -1,3 +1,5 @@
+
+// FLAWED APPROACH
 class Solution {
 public:
     vector<string> generateParenthesis(int n) {
