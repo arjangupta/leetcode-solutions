@@ -1,5 +1,9 @@
+// https://leetcode.com/problems/generate-parentheses/
 
-// FLAWED APPROACH
+
+// --------- FLAWED APPROACH - DOES NOT GIVE THE CORRECT SOLUTION -----------
+
+
 class Solution {
 public:
     vector<string> generateParenthesis(int n) {
