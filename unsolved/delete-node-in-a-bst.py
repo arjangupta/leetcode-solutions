@@ -1,5 +1,7 @@
 # https://leetcode.com/problems/delete-node-in-a-bst/
 # Unsolved - 81/92 test cases passed
+# Attempted - 2023-08-24
+# Difficulty: Medium
 
 # Definition for a binary tree node.
 class TreeNode:
