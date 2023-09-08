@@ -1,4 +1,5 @@
 # https://leetcode.com/problems/trapping-rain-water/description/
+# 322/322 test cases passed, but took too long (time limit exceeded)
 
 from typing import List
 
@@ -16,11 +17,16 @@ class Solution:
             elif r_ptr + 1 >= len(height) or height[r_ptr + 1] < height[r_ptr] or height[r_ptr] > height[l_ptr]:
                 temp_r_ptr = r_ptr
                 if r_ptr + 1 < len(height) and height[r_ptr + 1] < height[r_ptr] and height[l_ptr] > height[r_ptr]:
+                    max_beyond_r = r_ptr
                     while temp_r_ptr < len(height):
                         if height[temp_r_ptr] >= height[l_ptr]:
                             r_ptr = temp_r_ptr
                             break
+                        if height[temp_r_ptr] > height[max_beyond_r]:
+                            max_beyond_r = temp_r_ptr
                         temp_r_ptr += 1
+                if temp_r_ptr == len(height):
+                    r_ptr = max_beyond_r
                 shorter_end = min(height[l_ptr], height[r_ptr])
                 l_ptr += 1
                 while l_ptr != r_ptr:
@@ -28,11 +34,10 @@ class Solution:
                     if height_diff > 0:
                         total_water += height_diff
                     l_ptr +=1
-                if temp_r_ptr == len(height):
-                    break
+                print(total_water)
                 l_ptr = r_ptr
                 r_ptr = l_ptr + 2
             else:
                 r_ptr += 1
         return total_water
-            
+                        
