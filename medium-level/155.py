@@ -16,23 +16,26 @@ class MinStack:
             self.min_ds.append(MinObject([len(self.stack)]))
         elif val == self.getMin():
             self.min_ds[-1].min_indices.append(len(self.stack))
+            self.min_ds[-1].shared_count += 1
         else:
             self.min_ds[-1].shared_count += 1
         self.stack.append(val)
 
     def pop(self) -> None:
+        removed = self.stack.pop()
         if self.min_ds[-1].shared_count > 0:
             self.min_ds[-1].shared_count -= 1
+            if removed == self.stack[self.min_ds[-1].min_indices[0]]:
+                self.min_ds[-1].min_indices.pop()
         else:
             self.min_ds.pop()
-        return self.stack.pop()
+        return removed
 
     def top(self) -> int:
         return self.stack[-1]
 
     def getMin(self) -> int:
         idx = self.min_ds[-1].min_indices[0]
-        print("getMin idx:", idx)
         return self.stack[idx]
 
 
