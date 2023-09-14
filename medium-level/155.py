@@ -1,3 +1,6 @@
+# https://leetcode.com/problems/min-stack/
+# Solved: 2023-09-14
+
 from typing import List
 
 class MinObject:
