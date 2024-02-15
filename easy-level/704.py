@@ -1,3 +1,8 @@
+# https://leetcode.com/problems/binary-search/description/
+# Solved: 2024-02-14
+
+from typing import List
+
 class Solution:
     def search(self, nums: List[int], target: int) -> int:
         half_index = int(len(nums)/2)
